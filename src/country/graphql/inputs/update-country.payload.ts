@@ -1,5 +1,5 @@
-import { InputType, PartialType } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
 import { CreateCountryInput } from './create-country.input';
 
 @InputType()
-export class UpdateCountryPayload extends PartialType(CreateCountryInput) {}
+export class UpdateCountryPayload extends CreateCountryInput {}
