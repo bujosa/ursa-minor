@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  moss-green-service:
+    container_name: 'moss-green-service'
+    restart: 'always'
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    env_file: ./env/.moss-green.env
+
