@@ -13,7 +13,7 @@ import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
 @Resolver(() => Location)
 export class LocationResolver {
-  constructor(private readonly locationService: LocationService) {}
+  constructor(private readonly service: LocationService) {}
 
   @AuthorizedRoles(...CLIENT)
   @Query(() => Location)
@@ -21,7 +21,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<Location> {
-    return this.locationService.getEntityById({ id });
+    return this.service.getEntityById({ id });
   }
 
   @AuthorizedRoles(...CLIENT)
@@ -30,7 +30,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Location[]> {
-    return this.locationService.getAllEntities(filterInput);
+    return this.service.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(...CLIENT)
@@ -39,7 +39,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createLocationInput: CreateLocationInput,
   ): Promise<Location> {
-    return this.locationService.createEntity(createLocationInput);
+    return this.service.createEntity(createLocationInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -48,7 +48,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateLocationInput: UpdateLocationInput,
   ): Promise<Location> {
-    return this.locationService.updateEntity(updateLocationInput);
+    return this.service.updateEntity(updateLocationInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -56,6 +56,6 @@ export class LocationResolver {
   public async deleteLocation(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Location> {
-    return this.locationService.deleteEntity({ id });
+    return this.service.deleteEntity({ id });
   }
 }
