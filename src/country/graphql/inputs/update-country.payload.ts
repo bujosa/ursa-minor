@@ -1,8 +1,7 @@
-import { IUpdateContryPayload } from '../../interfaces/inputs/update-country-payload.interface';
 import { InputType, Field } from '@nestjs/graphql';
 
 @InputType()
-export class UpdateCountryPayload implements IUpdateContryPayload {
+export class UpdateCountryPayload {
   @Field()
   name: string;
 }
