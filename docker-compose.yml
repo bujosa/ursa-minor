@@ -1,6 +1,11 @@
 version: '3.4'
 
 services:
+
+  mongo-service:
+    image: mongo
+    expose: 
+      - "27017"
   moss-green-service:
     container_name: 'moss-green-service'
     restart: 'always'
@@ -8,5 +13,7 @@ services:
       context: .
     ports:
       - '3000:3000'
+    depends_on:
+      - mongo-service
     env_file: ./env/.moss-green.env
 
