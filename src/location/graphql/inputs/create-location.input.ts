@@ -1,8 +1,7 @@
-import { ICreateLocationInput } from '../../interfaces/inputs/create-location-input.interface';
 import { InputType, Field, Float, ID } from '@nestjs/graphql';
 
 @InputType()
-export class CreateLocationInput implements ICreateLocationInput {
+export class CreateLocationInput {
   @Field(() => Float)
   latitude: number;
 
