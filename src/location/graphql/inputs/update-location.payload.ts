@@ -1,20 +1,7 @@
-import { IUpdateLocationPayload } from '../../interfaces/inputs/update-location-payload.interface';
-import { InputType, Field, Float, ID } from '@nestjs/graphql';
+import { InputType, OmitType, PartialType } from '@nestjs/graphql';
+import { CreateLocationInput } from './create-location.input';
 
 @InputType()
-export class UpdateLocationPayload implements IUpdateLocationPayload {
-  @Field(() => Float, { nullable: true })
-  latitude?: number;
-
-  @Field(() => Float, { nullable: true })
-  longitude?: number;
-
-  @Field({ nullable: true })
-  address?: string;
-
-  @Field(() => ID, { nullable: true })
-  country?: string;
-
-  @Field({ nullable: true })
-  zipCode?: string;
-}
+export class UpdateLocationPayload extends PartialType(
+  OmitType(CreateLocationInput, ['customer'] as const),
+) {}
